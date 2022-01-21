@@ -1,0 +1,1 @@
+implement function readUrl. only n(const) runUrl in one moment time
