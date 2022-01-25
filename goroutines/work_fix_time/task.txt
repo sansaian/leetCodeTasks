@@ -1,0 +1,1 @@
+Given an array of tasks, each one runs at random times. It is necessary that only j tasks be executed at the same time in m seconds
