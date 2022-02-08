@@ -43,14 +43,31 @@ func add(leaf *Leaf, val int) *Leaf {
 	return leaf
 }
 
-func (b *BinaryTree) Search(val int) {}
+func (b *BinaryTree) Search(val int) *Leaf {
+	return search(b.Root, val)
+}
+
+func search(leaf *Leaf, val int) *Leaf {
+	if leaf.Value == val || leaf == nil {
+		return leaf
+	}
+	switch {
+	case leaf.Value > val:
+		return search(leaf.Left, val)
+	case leaf.Value < val:
+		return search(leaf.Right, val)
+	}
+	return nil
+}
 
 func main() {
 	myTree := New()
 	myTree.Add(9)
 	myTree.Add(5)
 	myTree.Add(13)
+	fmt.Println("search", myTree.Search(5))
 	myTree.Add(4)
 	myTree.Add(8)
+	fmt.Println("search", myTree.Search(5))
 	fmt.Println(myTree.Root)
 }
