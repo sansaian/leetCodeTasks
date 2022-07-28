@@ -22,6 +22,7 @@ func readURL(in <-chan string, out chan<- string) {
 	}
 
 }
+
 func main() {
 	job := []string{"1", "2", "3", "4"}
 	in := make(chan string)

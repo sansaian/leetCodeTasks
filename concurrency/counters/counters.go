@@ -48,7 +48,6 @@ func (c *counterWithAtomic) read() int64 {
 }
 
 func (c *counterWithAtomic) inc() {
-
 	atomic.AddInt64(&c.value, 1)
 }
 

@@ -1,4 +1,4 @@
-package list
+package main
 
 import "fmt"
 
@@ -54,7 +54,7 @@ func (l *LinkedList) Remove(val int) {
 		return
 	}
 	iterator := l.head
-	for iterator != nil || iterator.Next != nil {
+	for iterator.Next != nil {
 		if iterator.Next.Val == val {
 			iterator.Next = iterator.Next.Next
 			l.size--
