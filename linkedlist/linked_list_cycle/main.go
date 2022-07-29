@@ -10,7 +10,6 @@ type ListNode struct {
 }
 
 func NewGenerateList() *ListNode {
-
 	var last *ListNode
 	for i := 5; i > 0; i-- {
 		node := &ListNode{

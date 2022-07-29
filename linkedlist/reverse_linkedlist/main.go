@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -18,9 +20,13 @@ func newListNode() *ListNode {
 	return last
 }
 
-func main() {
-	head := newListNode()
-	reverseList(head)
+func (l *ListNode) Print() {
+	node := l
+	for node != nil {
+		fmt.Print(node.Val)
+		node = node.Next
+	}
+	fmt.Println()
 }
 
 func reverseList(head *ListNode) *ListNode {
@@ -36,4 +42,11 @@ func reverseList(head *ListNode) *ListNode {
 	}
 	head.Next = last
 	return head
+}
+
+func main() {
+	head := newListNode()
+	head.Print()
+	reverseList(head)
+	head.Print()
 }

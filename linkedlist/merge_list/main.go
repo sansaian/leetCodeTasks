@@ -78,7 +78,7 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 func main() {
 	list1 := NewGenerateList(1)
 	list1.Print()
-	list2 := NewGenerateList(1)
+	list2 := NewGenerateList(3)
 	list2.Print()
 	result := mergeTwoLists(list1, list2)
 	result.Print()

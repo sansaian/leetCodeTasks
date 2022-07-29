@@ -18,19 +18,19 @@ func main() {
 }
 
 func rotate(matrix [][]int) {
-	lenght := len(matrix[0])
+	length := len(matrix[0])
 	duplicate := make([][]int, len(matrix))
 	for i := range matrix {
 		duplicate[i] = make([]int, len(matrix[i]))
 		copy(duplicate[i], matrix[i])
 	}
 
-	for i := 0; i < lenght; i++ {
-		for j := 0; j < lenght; j++ {
-			if i == lenght && j == lenght {
+	for i := 0; i < length; i++ {
+		for j := 0; j < length; j++ {
+			if i == length && j == length {
 				continue
 			}
-			matrix[j][(lenght-1)-i] = duplicate[i][j]
+			matrix[j][(length-1)-i] = duplicate[i][j]
 		}
 	}
 	matrix = duplicate
