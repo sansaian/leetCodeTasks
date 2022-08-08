@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	//fmt.Println(Search([]int{1, 2, 3, 4, 5}, 4))
-	//fmt.Println(Search([]int{1, 2, 3, 4, 5}, 1))
+	fmt.Println(Search([]int{1, 2, 3, 4, 5}, 4))
+	fmt.Println(Search([]int{1, 2, 3, 4, 5}, 1))
 	fmt.Println(Search([]int{1, 2}, 1))
 }
 
