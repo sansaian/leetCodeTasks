@@ -8,7 +8,7 @@ import (
 const n = 2
 
 func readURL(in <-chan string, out chan<- string) {
-	//var result string
+	//var result strings
 	for {
 		result, ok := <-in
 		fmt.Printf("get url %s \n", result)
