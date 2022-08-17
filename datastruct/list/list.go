@@ -1,71 +1,63 @@
-package main
+package list
 
 import "fmt"
 
-type LinkedList struct {
-	head *Node
-	size int
-}
-type Node struct {
+type ListNode struct {
 	Val  int
-	Next *Node
+	Next *ListNode
 }
 
-func New(arr []int) LinkedList {
-	l := LinkedList{}
-	if len(arr) < 1 {
-		return l
+func New(arr []int) *ListNode {
+
+	if len(arr) == 0 {
+		return nil
 	}
-	for _, v := range arr {
+	l := ListNode{Val: arr[0]}
+	for _, v := range arr[1:] {
 		l.Add(v)
 	}
 
-	return l
+	return &l
 }
 
-func (l *LinkedList) Add(val int) {
-	if l.head == nil {
-		l.head = &Node{
+func (l *ListNode) Add(val int) {
+	if l == nil {
+		l.Next = &ListNode{
 			Val:  val,
 			Next: nil,
 		}
-		l.size++
 		return
 	}
-	iterator := l.head
+	iterator := l
 	for iterator.Next != nil {
 		iterator = iterator.Next
 	}
-	iterator.Next = &Node{
+	iterator.Next = &ListNode{
 		Val:  val,
 		Next: nil,
 	}
-	l.size++
 }
 
-func (l *LinkedList) Remove(val int) {
-	if l.head == nil {
+func (l *ListNode) Remove(val int) {
+	if l == nil {
 		return
 	}
-	// случай когда это head
-	if l.head.Val == val {
-		l.head = l.head.Next
-		l.size--
+	if l.Val == val {
+		l = l.Next
 		return
 	}
-	iterator := l.head
+	iterator := l
 	for iterator.Next != nil {
 		if iterator.Next.Val == val {
 			iterator.Next = iterator.Next.Next
-			l.size--
 			return
 		}
 		iterator = iterator.Next
 	}
 }
 
-func (l *LinkedList) Print() {
-	node := l.head
+func (l *ListNode) Print() {
+	node := l
 	for node != nil {
 		fmt.Print(node.Val)
 		node = node.Next
