@@ -1,0 +1,15 @@
+func firstUniqChar(s string) int {
+    heapmap := make(map[int32]int,len(s))
+  for _, value := range s {
+    heapmap[value]++
+    if k,v:=heapmap[value];ok{
+
+      }
+  }
+  for i, val := range s {
+    if heapmap[val]==1{
+      return i
+    }
+  }
+  return -1
+}
