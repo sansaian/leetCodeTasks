@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+	// think about ascii or unicode? если один символ больше чем 1 байт это работать не будет
 	fmt.Println(isOneModify("pale", "bakebs"))
 	fmt.Println(isOneModify("pale", "ple"))
 	fmt.Println(isOneModify("pales", "pale"))
@@ -11,27 +12,43 @@ func main() {
 	fmt.Println(isOneModify("paable", "paale"))
 }
 
-func isOneModify(a, b string) bool {
-	if len(a)-len(b) >= 2 || len(b)-len(a) >= 2 {
-		return false
+func isOneModify(first, second string) bool {
+	if len(first) == len(second) {
+		return oneEditReplace(first, second)
+	} else if len(first)+1 == len(second) {
+		return oneEditInsert(first, second)
+	} else if len(first)-1 == len(second) {
+		return oneEditInsert(second, first)
 	}
-	diff := 0
-	setA := make(map[rune]int, len(a))
-	setB := make(map[rune]int, len(b))
-	for _, sym := range a {
-		setA[sym]++
-	}
-	for _, sym := range b {
-		setB[sym]++
-	}
-	for sym := range setA {
-		if setA[sym] != setB[sym] {
-			diff++
-		}
+	return false
+}
 
+func oneEditInsert(first string, second string) bool {
+	var index1, index2 int
+
+	for index2 < len(second) && index1 < len(first) {
+		if first[index1] != second[index2] {
+			if index1 != index2 {
+				return false
+			}
+			index2++
+		} else {
+			index1++
+			index2++
+		}
 	}
-	if len(a) < len(b) {
-		diff++
+	return true
+}
+
+func oneEditReplace(first, second string) bool {
+	foundDiff := false
+	for i := range first {
+		if first[i] != second[i] {
+			if foundDiff {
+				return false
+			}
+			foundDiff = true
+		}
 	}
-	return diff <= 1
+	return true
 }
