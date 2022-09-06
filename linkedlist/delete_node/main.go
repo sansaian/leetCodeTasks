@@ -5,7 +5,6 @@ type List struct {
 	len  int      // current list length excluding (this) sentinel element
 }
 
-// Definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
