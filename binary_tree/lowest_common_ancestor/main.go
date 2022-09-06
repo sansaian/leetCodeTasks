@@ -15,8 +15,6 @@ func main() {
 }
 
 func lowestCommonAncestor(root, p, q *binary_tree.TreeNode) *binary_tree.TreeNode {
-
-	//что делать с кейсами когда только 2 элемента
 	if root == nil {
 		return root
 	}
