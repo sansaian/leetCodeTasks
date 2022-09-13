@@ -1,84 +1,41 @@
 package main
 
-import "fmt"
+import (
+	"github.com/leetCodeTasks/datastruct/list"
+)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+func mergeTwoLists(list1 *list.ListNode, list2 *list.ListNode) *list.ListNode {
+	result := list1
 
-func NewGenerateList(n int) *ListNode {
-	var last *ListNode
-	for i := 5; i > 0; i-- {
-		node := &ListNode{
-			Val:  i * n,
-			Next: last,
-		}
-		last = node
-	}
-	return last
-}
-
-func (l *ListNode) Print() {
-	node := l
-	for node != nil {
-		fmt.Print(node.Val)
-		node = node.Next
-	}
-	fmt.Println()
-}
-
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	val := 0
-	iterator2 := list2
-	iterator1 := list1
-	switch {
-	case list1 == nil:
+	if list1 == nil {
 		return list2
-	case list2 == nil:
-		return list1
-	case list1.Val > list2.Val:
-		iterator2 = list2.Next
-		val = list2.Val
-	case list1.Val <= list2.Val:
-		iterator1 = list1.Next
-		val = list1.Val
 	}
 
-	resultList := &ListNode{
-		Val:  val,
-		Next: nil,
+	for list1 != nil && list2 != nil {
+		if list1.Val > list2.Val {
+			tmp := &list.ListNode{
+				Val:  list1.Val,
+				Next: list1.Next,
+			}
+			list1.Val, list1.Next = list2.Val, tmp
+			list2 = list2.Next
+		}
+		if list1.Next == nil {
+			break
+		}
+		list1 = list1.Next
 	}
-	head := resultList
 
-	for iterator1 != nil && iterator2 != nil {
-		switch {
-		case iterator1.Val <= iterator2.Val:
-			val = iterator1.Val
-			iterator1 = iterator1.Next
-		case iterator1.Val > iterator2.Val:
-			val = iterator2.Val
-			iterator2 = iterator2.Next
-		}
-		resultList.Next = &ListNode{
-			Val:  val,
-			Next: nil,
-		}
-		resultList = resultList.Next
+	if list2 != nil {
+		list1.Next = list2
 	}
-	if iterator1 == nil {
-		resultList.Next = iterator2
-		return head
-	}
-	resultList.Next = iterator1
-	return head
+	return result
 }
 
 func main() {
-	list1 := NewGenerateList(1)
-	list1.Print()
-	list2 := NewGenerateList(3)
-	list2.Print()
+	list1 := list.New([]int{1, 2, 4})
+	list2 := list.New([]int{1, 3, 4})
+	//exampleList.Print()
 	result := mergeTwoLists(list1, list2)
 	result.Print()
 }
