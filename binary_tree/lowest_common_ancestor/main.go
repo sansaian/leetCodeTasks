@@ -18,13 +18,13 @@ func lowestCommonAncestor(root, p, q *binary_tree.TreeNode) *binary_tree.TreeNod
 	if root == nil {
 		return root
 	}
-	if p.Value < root.Value && q.Value < root.Value {
+	if p.Val < root.Val && q.Val < root.Val {
 		return lowestCommonAncestor(root.Left, p, q)
 	}
-	if p.Value > root.Value && q.Value > root.Value {
+	if p.Val > root.Val && q.Val > root.Val {
 		return lowestCommonAncestor(root.Right, p, q)
 	}
-	if p.Value <= root.Value && q.Value >= root.Value {
+	if p.Val <= root.Val && q.Val >= root.Val {
 		return root
 	}
 	return root

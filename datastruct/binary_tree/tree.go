@@ -5,12 +5,12 @@ import "fmt"
 type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
-	Value int
+	Val   int
 }
 
 func New(rootValue int) *TreeNode {
 	return &TreeNode{
-		Value: rootValue,
+		Val: rootValue,
 	}
 }
 
@@ -24,12 +24,12 @@ func delete(node *TreeNode, upNode *TreeNode, val int) {
 	}
 
 	switch {
-	case node.Value > val:
+	case node.Val > val:
 		delete(node.Left, node, val)
-	case node.Value < val:
+	case node.Val < val:
 		delete(node.Right, node, val)
-	case node.Value == val:
-		if node.Value < upNode.Value {
+	case node.Val == val:
+		if node.Val < upNode.Val {
 			upNode.Left = nil
 			return
 		}
@@ -48,15 +48,15 @@ func add(leaf *TreeNode, val int) *TreeNode {
 		return &TreeNode{
 			Left:  nil,
 			Right: nil,
-			Value: val,
+			Val:   val,
 		}
 	}
 	switch {
-	case leaf.Value > val:
+	case leaf.Val > val:
 		leaf.Left = add(leaf.Left, val)
-	case leaf.Value < val:
+	case leaf.Val < val:
 		leaf.Right = add(leaf.Right, val)
-	case leaf.Value == val:
+	case leaf.Val == val:
 		return leaf
 	}
 	return leaf
@@ -67,13 +67,13 @@ func (b *TreeNode) Search(val int) *TreeNode {
 }
 
 func search(leaf *TreeNode, val int) *TreeNode {
-	if leaf.Value == val {
+	if leaf.Val == val {
 		return leaf
 	}
 	switch {
-	case leaf.Value > val:
+	case leaf.Val > val:
 		return search(leaf.Left, val)
-	case leaf.Value < val:
+	case leaf.Val < val:
 		return search(leaf.Right, val)
 	}
 	return nil
@@ -84,7 +84,7 @@ func (b *TreeNode) Print() {
 }
 
 func print(leaf *TreeNode) {
-	fmt.Println(leaf.Value)
+	fmt.Println(leaf.Val)
 	if leaf.Right != nil {
 		print(leaf.Right)
 	}

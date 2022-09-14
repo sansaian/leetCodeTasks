@@ -9,7 +9,7 @@ func isValidBST(root *tree.TreeNode) bool {
 		return true
 	}
 
-	if valid(root.Left, root.Value, true) && valid(root.Right, root.Value, false) {
+	if valid(root.Left, root.Val, true) && valid(root.Right, root.Val, false) {
 		return isValidBST(root.Left) && isValidBST(root.Right)
 	} else {
 		return false
@@ -21,12 +21,12 @@ func valid(root *tree.TreeNode, nodeVal int, isLess bool) bool {
 		return true
 	}
 	if isLess {
-		if root.Value >= nodeVal {
+		if root.Val >= nodeVal {
 			return false
 		}
 		return valid(root.Left, nodeVal, isLess) && valid(root.Right, nodeVal, isLess)
 	} else {
-		if root.Value <= nodeVal {
+		if root.Val <= nodeVal {
 			return false
 		}
 		return valid(root.Left, nodeVal, isLess) && valid(root.Right, nodeVal, isLess)

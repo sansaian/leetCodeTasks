@@ -10,7 +10,7 @@ func Test_BinaryTree(t *testing.T) {
 	myTree.Add(9)
 	myTree.Add(5)
 	myTree.Add(13)
-	fmt.Println(fmt.Sprintf("root %d, left %v, right %v", myTree.Value, myTree.Left, myTree.Right))
+	fmt.Println(fmt.Sprintf("root %d, left %v, right %v", myTree.Val, myTree.Left, myTree.Right))
 	myTree.Print()
 	fmt.Println("search", myTree.Search(5))
 	myTree.Add(4)
