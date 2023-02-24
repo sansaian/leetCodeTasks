@@ -1,9 +1,12 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-
+	fmt.Println(maxSubArray([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4, 1}))
 }
 
 func maxSubArray(nums []int) int {
