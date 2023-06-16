@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+const goal = 6
+
 func main() {
 	fmt.Println(guessNumber(1))
 }
@@ -27,7 +29,6 @@ func binarySearch(start, finish int) int {
 }
 
 func guess(dot int) int {
-	goal := 1
 	if dot < goal {
 		return 1
 	}
