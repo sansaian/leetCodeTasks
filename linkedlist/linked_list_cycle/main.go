@@ -30,18 +30,11 @@ func (l *ListNode) Print() {
 	fmt.Println()
 }
 
-func main() {
-
-}
-
 func hasCycle(head *ListNode) bool {
-	for slow, fast := head, head; slow != nil && fast != nil; {
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
 		slow = slow.Next
-		fast = fast.Next
-		if fast == nil || fast.Next == nil {
-			return false
-		}
-		fast = fast.Next
+		fast = fast.Next.Next
 		if slow == fast {
 			return true
 		}
