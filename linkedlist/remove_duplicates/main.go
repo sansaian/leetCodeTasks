@@ -27,3 +27,28 @@ func remove(head *list.ListNode) {
 	}
 	remove(head.Next)
 }
+
+// Another solution!
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func deleteDuplicates(head *ListNode) *ListNode {
+	if head == nil {
+		return head
+	}
+	slow, fast := head, head.Next
+
+	for fast != nil {
+		if slow.Val == fast.Val {
+			slow.Next = fast.Next
+			fast = fast.Next
+			continue
+		}
+		slow = slow.Next
+		fast = fast.Next
+	}
+	return head
+}
