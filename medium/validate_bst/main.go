@@ -1,35 +1,35 @@
 package main
 
 import (
+	"math"
+
 	tree "github.com/leetCodeTasks/datastruct/binary_tree"
 )
 
-func isValidBST(root *tree.TreeNode) bool {
-	if root == nil {
-		return true
-	}
+func main() {
 
-	if valid(root.Left, root.Val, true) && valid(root.Right, root.Val, false) {
-		return isValidBST(root.Left) && isValidBST(root.Right)
-	} else {
-		return false
-	}
 }
 
-func valid(root *tree.TreeNode, nodeVal int, isLess bool) bool {
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isValidBST(root *tree.TreeNode) bool {
+	return valid(root, math.MinInt, math.MaxInt)
+}
+
+func valid(root *tree.TreeNode, min int, max int) bool {
 	if root == nil {
 		return true
 	}
-	if isLess {
-		if root.Val >= nodeVal {
-			return false
-		}
-		return valid(root.Left, nodeVal, isLess) && valid(root.Right, nodeVal, isLess)
-	} else {
-		if root.Val <= nodeVal {
-			return false
-		}
-		return valid(root.Left, nodeVal, isLess) && valid(root.Right, nodeVal, isLess)
+	if root.Val <= min || root.Val >= max {
+		return false
 	}
-
+	left := valid(root.Left, min, root.Val)
+	right := valid(root.Right, root.Val, max)
+	return left && right
 }
